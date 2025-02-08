@@ -9,7 +9,7 @@ class FamilyTree extends Model
 {
     use HasFactory;
 
-    protected $table = 'family_tree';
+    protected $table = 'trees';
 
     protected $fillable = ['tree_name', 'description'];
 

@@ -11,6 +11,8 @@ class FamilyMember extends Model
 
     use HasFactory;
 
+    protected $table = 'family_members';
+
     protected $fillable = ['tree_id', 'name', 'birth_date', 'gender', 'address', 'parent_id'];
 
     public function tree()
