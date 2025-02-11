@@ -37,6 +37,14 @@ class TreeController extends Controller
         return view('edit-tree', compact('tree'));
     }
 
+    public function delete($tree_id)
+    {
+        $tree = FamilyTree::findOrFail($tree_id);
+        $tree->delete();
+
+        return redirect()->back()->with('success', 'Data berhasil dihapus.');
+    }
+
     public function update(Request $request, $tree_id)
     {
         $tree = FamilyTree::findOrFail($tree_id);
@@ -46,5 +54,10 @@ class TreeController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Data berhasil diperbarui!');
+    }
+
+    public function detail($tree_id){
+        $tree = FamilyTree::findOrFail($tree_id);
+        return view('detail', compact('tree'));
     }
 }

@@ -18,7 +18,11 @@ Route::middleware([
     
     Route::get('/trees/{id}/edit', [TreeController::class, 'edit'])->name('trees.edit');
     
+    Route::delete('/trees/{id}/delete', [TreeController::class, 'delete'])->name('trees.delete');
+    
     Route::put('/trees/{id}', [TreeController::class, 'update'])->name('trees.update');
+
+    Route::get('/detail/{id}', [TreeController::class, 'detail'])->name('trees.show');
 });
 
 
