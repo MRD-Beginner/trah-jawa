@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\TreeController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ Route::middleware([
     Route::put('/trees/{id}', [TreeController::class, 'update'])->name('trees.update');
 
     Route::get('/detail/{id}', [TreeController::class, 'detail'])->name('trees.show');
+
+    Route::post('/member/store', [FamilyController::class, 'store'])->name('family.store');
 });
 
 

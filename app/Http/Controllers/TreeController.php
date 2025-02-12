@@ -57,7 +57,10 @@ class TreeController extends Controller
     }
 
     public function detail($tree_id){
-        $tree = FamilyTree::findOrFail($tree_id);
+        // $tree = FamilyTree::findOrFail($tree_id);
+        // return view('detail', compact('tree'));
+
+        $tree = FamilyTree::with('familyMembers')->findOrFail($tree_id);
         return view('detail', compact('tree'));
     }
 }

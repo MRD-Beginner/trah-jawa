@@ -15,7 +15,7 @@ class FamilyTree extends Model
 
     public function familyMembers()
     {
-        return $this->hasMany(FamilyMember::class);
+        return $this->hasMany(FamilyMember::class, 'tree_id', 'id');
     }
 
 }
