@@ -26,6 +26,13 @@ Route::middleware([
     Route::get('/detail/{id}', [TreeController::class, 'detail'])->name('trees.show');
 
     Route::post('/member/store', [FamilyController::class, 'store'])->name('family.store');
+
+    Route::get('/family_members/{id}/edit', [FamilyController::class, 'edit'])->name('family_members.edit');
+
+    Route::put('/family_members/{id}/update', [FamilyController::class, 'update'])->name('family_members.update');
+
+    Route::delete('/family_members/{id}', [FamilyController::class, 'destroy'])->name('family_members.destroy');
+
 });
 
 

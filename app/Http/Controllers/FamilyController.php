@@ -28,4 +28,36 @@ class FamilyController extends Controller
 
         return redirect()->back()->with('success', 'Data berhasil disimpan!');
     }
+
+    public function edit($id) {
+        $member = FamilyMember::findOrFail($id);
+        return view('family_members.edit', compact('member'));
+    }
+
+    public function update(Request $request, $id) {
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'birth_date' => 'required|date',
+            'gender' => 'required|string|in:Laki-Laki,Perempuan',
+            'address' => 'nullable|string|max:100',
+        ]);
+    
+        $member = FamilyMember::findOrFail($id);
+        $member->update([
+            'name' => $request->name,
+            'birth_date' => $request->birth_date,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'parent_id' => $request->parent_id,
+        ]);
+    
+        return redirect()->back()->with('success', 'Data berhasil diperbarui!');
+    }
+
+    public function destroy($id) {
+        $member = FamilyMember::findOrFail($id);
+        $member->delete();
+    
+        return redirect()->back()->with('success', 'Anggota keluarga berhasil dihapus!');
+    }
 }
