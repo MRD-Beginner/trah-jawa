@@ -83,20 +83,46 @@
                     </tr>
 
                     @foreach ($tree->familyMembers as $member)
-                    <tr class="border-separate border border-[#CFAD82] bg-[#FFE28B]">
+                    <tr class="border-separate border border-[#CFAD82] bg-[#FFE28B] justify-center align-middle">
                         <td class="py-3 px-4 text-center border border-[#CFAD82]">{{ $loop -> iteration }}</td>
                         <td class="py-3 px-4 border border-[#CFAD82] text-center">{{$member->name}}</td>
                         <td class="py-3 px-4 border border-[#CFAD82] text-center">{{ $member->birth_date }}</td>
                         <td class="py-3 px-4 border border-[#CFAD82] text-center">{{ $member->gender }}</td>
                         <td class="py-3 px-4 border border-[#CFAD82] text-center">{{ $member->address }}</td>
-                        <td class="py-3 px-4 border border-[#CFAD82] text-center">{{ $member->parent ? $member->parent->name : 'Tidak Ada' }}</td>
-                        <td>
-                            <a href="{{ route('family_members.edit', $member->id) }}" 
-                                class="btn btn-warning btn-sm"
-                                data-bs-toggle="modal"
-                                data-bs-target="#EditModal{{ $member->id }}">
+                        <td class="py-3 px-4 border border-[#CFAD82] text-center ">{{ $member->parent ? $member->parent->name : 'Tidak Ada' }}</td>
+                        <td class="py-3 px-8 border border-[#CFAD82] flex gap-3">
+
+                            <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#DetailModal{{ $member->id }}">
+                                Detail
+                            </button>
+
+                            <div class="modal fade" id="DetailModal{{ $member->id }}" tabindex="-1" aria-labelledby="DetailModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="DetailModalLabel">Detail Anggota Keluarga</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><strong>Nama:</strong> {{ $member->name }}</li>
+                                                <li class="list-group-item"><strong>Tanggal Lahir:</strong> {{ $member->birth_date }}</li>
+                                                <li class="list-group-item"><strong>Jenis Kelamin:</strong> {{ $member->gender }}</li>
+                                                <li class="list-group-item"><strong>Alamat:</strong> {{ $member->address }}</li>
+                                                <li class="list-group-item"><strong>Orang Tua:</strong> {{ $member->parent ? $member->parent->name : 'Tidak Ada' }}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        
+                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#EditModal{{ $member->id }}">
                                  Edit
-                             </a>
+                            </button>
                      
                              <!-- Modal Edit -->
                              <div class="modal fade" id="EditModal{{ $member->id }}" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
@@ -184,6 +210,8 @@
                                     </div>
                                 </div>
                             </div>
+
+
                         </td>
                     </tr>
                     @endforeach
